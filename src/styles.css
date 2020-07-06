@@ -1,3 +1,7 @@
+:root {
+  --color-primary: #428bca;
+}
+
 .App {
   font-family: sans-serif;
 }
@@ -12,4 +16,39 @@
 
 .table-body {
   background-color: white;
+}
+
+.data-card {
+  font-size: 14px;
+  border-bottom: 6px solid #eff0f1;
+  padding: 1% 1%;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.p-3-0 {
+  padding: 3px 0px;
+}
+
+.badge {
+  font-size: 12px;
+}
+
+.btn-outline-primary {
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+  background-color: transparent !important;
+}
+
+.btn-outline-primary:hover {
+  color: #fff;
+  background-color: var(--color-primary) !important;
+  border-color: var(--color-primary);
+}
+
+.sleek-button {
+  padding-right: 14%;
+  padding-left: 14%;
+  padding-top: 1%;
+  padding-bottom: 1%;
 }
