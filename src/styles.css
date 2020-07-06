@@ -1,4 +1,15 @@
 .App {
   font-family: sans-serif;
-  text-align: center;
+}
+
+.display-flex {
+  display: flex;
+}
+
+.table-header {
+  color: grey;
+}
+
+.table-body {
+  background-color: white;
 }
