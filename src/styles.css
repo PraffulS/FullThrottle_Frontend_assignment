@@ -34,7 +34,8 @@
   font-size: 12px;
 }
 
-.btn-outline-primary {
+.btn-outline-primary,
+.btn-outline-primary:focus {
   color: var(--color-primary);
   border: 1px solid var(--color-primary);
   background-color: transparent !important;
@@ -51,4 +52,36 @@
   padding-left: 14%;
   padding-top: 1%;
   padding-bottom: 1%;
+}
+
+.modal-wide {
+  min-width: 69%;
+}
+
+.display-block {
+  display: block;
+}
+
+.single-log {
+  padding: 1%;
+  background-color: #f3fffa;
+  border-radius: 6px;
+  font-size: 14px;
+  margin-bottom: 7px;
+}
+
+.single-day {
+  padding: 2%;
+  background-color: #dfe6db;
+  border-radius: 17px;
+  margin-bottom: 11px;
+}
+
+.small-font {
+  font-size: 12px;
+  color: grey;
+}
+
+.lh-19 {
+  line-height: 19px;
 }
