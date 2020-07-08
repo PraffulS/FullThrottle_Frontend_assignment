@@ -1,13 +1,23 @@
-import * as React from "react";
-import { Modal, Row, Col, Button, Badge } from "react-bootstrap";
-// import "./styles.css";
+import React from "react";
+import { Modal, Button, Badge } from "react-bootstrap";
 import { group_by_date } from "./utils";
 import moment from "moment";
+import DatePicker from "react-date-picker";
 
 export class UserModal extends React.Component {
   static defaultProps = {};
 
-  componentDidMount() {}
+  state = {
+    selected_date: new Date(),
+    grouped_data: {}
+  };
+  componentDidMount() {
+    const { data } = this.props;
+    const { activity_periods } = data;
+    const grouped_data = group_by_date(activity_periods);
+    this.setState({ grouped_data });
+  }
+  onChange = date => this.setState({ selected_date: date });
 
   render_user_info = () => {
     const { data } = this.props;
@@ -63,20 +73,44 @@ export class UserModal extends React.Component {
     );
   };
   render_logs = () => {
-    const { data } = this.props;
-    const { activity_periods } = data;
-    const grouped_data = group_by_date(activity_periods);
+    const { selected_date, grouped_data } = this.state;
+    let filtered_data = {};
+    if (selected_date) {
+      let date_key = moment(selected_date).format("Do MMM YYYY");
+      if (grouped_data[date_key]) {
+        filtered_data = {
+          ...filtered_data,
+          [date_key]: grouped_data[date_key]
+        };
+      }
+    } else {
+      filtered_data = grouped_data;
+    }
 
-    return Object.keys(grouped_data).map((key, index) => {
+    if (!Object.keys(filtered_data).length)
+      return (
+        <div className="not-found">
+          <i
+            style={{ fontSize: "100px", color: "#f1a7a7" }}
+            class="fa fa-exclamation-triangle"
+          />{" "}
+          <br />
+          No logs found for this date! <br /> Use the date filter to view other
+          logs.
+        </div>
+      );
+
+    return Object.keys(filtered_data).map((key, index) => {
       return (
         <div key={`act-${index}`} className="display-block single-day">
           Day - {key}
-          {grouped_data[key].map(ins => this.render_log_div(ins))}
+          {filtered_data[key].map(ins => this.render_log_div(ins))}
         </div>
       );
     });
   };
   render() {
+    const { selected_date } = this.state;
     return (
       <Modal
         {...this.props}
@@ -95,16 +129,24 @@ export class UserModal extends React.Component {
             <div style={{ flex: 0.3, padding: "1%" }}>
               {this.render_user_info()}
             </div>
-            <div style={{ flex: 1 }}>
-              <div style={{ textAlign: "center" }}>
-                <i
-                  style={{ fontSize: "100px", color: "#f1a7a7" }}
-                  class="fa fa-exclamation-triangle"
+            <div
+              style={{
+                flex: 1
+              }}
+            >
+              <div className="mb-35">
+                <DatePicker
+                  onChange={this.onChange}
+                  value={selected_date}
+                  maxDate={new Date()}
+                  className="float-right"
                 />{" "}
-                <br />
-                No logs found for this date!
               </div>
-              {/* {this.render_logs()} */}
+              <div
+                style={{ height: "calc(100vh - 250px)", overflowX: "scroll" }}
+              >
+                {this.render_logs()}
+              </div>
             </div>
           </div>
         </Modal.Body>

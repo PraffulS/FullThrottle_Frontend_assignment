@@ -64,7 +64,7 @@
 
 .single-log {
   padding: 1%;
-  background-color: #f3fffa;
+  background-color: #ffffff;
   border-radius: 6px;
   font-size: 14px;
   margin-bottom: 7px;
@@ -72,7 +72,7 @@
 
 .single-day {
   padding: 2%;
-  background-color: #dfe6db;
+  background-color: #eeefee;
   border-radius: 17px;
   margin-bottom: 11px;
 }
@@ -84,4 +84,22 @@
 
 .lh-19 {
   line-height: 19px;
+}
+
+.float-right {
+  float: right !important;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.mb-35 {
+  margin-bottom: 35px;
+}
+
+.not-found {
+  text-align: center;
+  padding: 10%;
+  border: 1px solid #e6e6e6;
 }
