@@ -5,7 +5,9 @@ import moment from "moment";
 import DatePicker from "react-date-picker";
 
 export class UserModal extends React.Component {
-  static defaultProps = {};
+  static defaultProps = {
+    data: {}
+  };
 
   state = {
     selected_date: new Date(),
