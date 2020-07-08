@@ -103,3 +103,7 @@
   padding: 10%;
   border: 1px solid #e6e6e6;
 }
+
+.react-date-picker__calendar--open {
+  left: -194px !important;
+}
